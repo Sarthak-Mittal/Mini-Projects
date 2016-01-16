@@ -1,4 +1,6 @@
 #include<stdio.h>
+#include<stdlib.h>
+
 void burst1(int x,int y);
 void burst2(int x,int y);
 void burstcorner1(int x,int y);
@@ -8,29 +10,17 @@ void burstcorner2(int x,int y);
 void checking1(void);
 void checking2(void);
 void winner(void);
+int choice_selector(int x, int y);
+void print();
 
 int arr[10][10];
 
 int main()
 {
-int i,j,k,m,x,y,c;
+int i,j,x,y,c;
 int d;
-for(i=0;i<=9;i++)
-{
-	for(j=0;j<=9;j++)
-	{
-	arr[i][j]=0;
-	}
-}
 
-for(k=0;k<=9;k++)
-{
-	for(m=0;m<=9;m++)
-	{
-	printf("   %d   ",arr[k][m]);
-	}
-printf("\n\n\n");
-}
+print();
 
 //taking values from user
 
@@ -42,14 +32,10 @@ if(c>0)
 
 line1:
 printf("Player 1\n");
-printf("Where you want to click\n");
-printf("--> press '1' for Corners\n");
-printf("--> press '2' for Borders\n");
-printf("--> press '3' for Insides\n");
-scanf("%d",&d);
 printf("enter co-ordinate");
-scanf("%d%d",&y,&x);
+scanf("%d %d",&y,&x);
 		
+d = choice_selector(y, x);
 	
 if(arr[x-1][y-1]<=3)
 {
@@ -57,46 +43,40 @@ switch(d)
 {
 
 case 1:			
-			if(arr[x-1][y-1]==0)
-				{arr[x-1][y-1]=1;
-				break;}
-			else if(arr[x-1][y-1]==1)
-				burstcorner1(x-1,y-1);
+	if(arr[x-1][y-1]==0)
+		{arr[x-1][y-1]=1;
+		break;}
+	else if(arr[x-1][y-1]==1)
+		burstcorner1(x-1,y-1);
 
 case 2:    	
-			if(arr[x-1][y-1]==0)	
-				{arr[x-1][y-1]=1;
-				break;}		
-			else if(arr[x-1][y-1]==1)
-				{arr[x-1][y-1]=2;
-				break;}
-			else if(arr[x-1][y-1]==2)
-				burstborder1(x-1,y-1);
-			
+	if(arr[x-1][y-1]==0)	
+		{arr[x-1][y-1]=1;
+		break;}		
+	else if(arr[x-1][y-1]==1)
+		{arr[x-1][y-1]=2;
+		break;}
+	else if(arr[x-1][y-1]==2)
+		burstborder1(x-1,y-1);
+	
 case 3:
-			if(arr[x-1][y-1]==0)
-				{arr[x-1][y-1]=1;
-				break;}		
-			else if(arr[x-1][y-1]==1)
-				{arr[x-1][y-1]=2;
-				break;}
-			else if(arr[x-1][y-1]==2)
-				{arr[x-1][y-1]=3;
-				break;}
-			else if(arr[x-1][y-1]==3)
-				burst1(x-1,y-1);
-			
+	if(arr[x-1][y-1]==0)
+		{arr[x-1][y-1]=1;
+		break;}		
+	else if(arr[x-1][y-1]==1)
+		{arr[x-1][y-1]=2;
+		break;}
+	else if(arr[x-1][y-1]==2)
+		{arr[x-1][y-1]=3;
+		break;}
+	else if(arr[x-1][y-1]==3)
+		burst1(x-1,y-1);
+	
 }		
 
 
-				for(k=0;k<=9;k++)
-				{
-					for(m=0;m<=9;m++)
-					{
-				   	printf("   %d   ",arr[k][m]);
-				   	}
-				printf("\n\n\n");
-			        }
+print();
+
 }
 
 else{goto line1;}
@@ -108,16 +88,11 @@ if(c>0)
 
 line2:
 printf("Player 2\n");
-printf("Where you want to click\n");
-printf("--> press '1' for Corners\n");
-printf("--> press '2' for Borders\n");
-printf("--> press '3' for Insides\n");
-scanf("%d",&d);
 printf("enter co-ordinate");
 scanf("%d%d",&y,&x);
 		
+d = choice_selector(y, x);
 	
-
 if(arr[x-1][y-1]>=5 || arr[x-1][y-1]==0)
 {
 switch(d)
@@ -157,15 +132,8 @@ case 3:
 			
 }		
 
+print();
 
-				for(k=0;k<=9;k++)
-				{
-					for(m=0;m<=9;m++)
-					{
-				   	printf("   %d   ",arr[k][m]);
-				   	}
-				printf("\n\n\n");
-			        }
 }
 
 	else{goto line2;}
@@ -660,16 +628,74 @@ plr2++;
 
 
 if(plr1==0)
-	{
-printf("__________________________________________________________________________________________________________________________________\n");
-printf("\t\t\t\tPLAYER 2 IS WINNER\n");
-printf("__________________________________________________________________________________________________________________________________\n");
+{
+	printf	("__________________________________________________________________________	________________________________________________________\n");	
+	printf("\t\t\t\tPLAYER 2 IS WINNER\n");
+	printf("______________________________________________________________________________	____________________________________________________\n");
+exit(0);
 }
 else if(plr2==0)
 {
-printf("__________________________________________________________________________________________________________________________________\n");
-printf("\t\t\t\tPLAYER 1 IS WINNER\n");
-printf("__________________________________________________________________________________________________________________________________\n");
+	printf("_________________________________________________________________	_________________________________________________________________\n");
+	printf("\t\t\t\tPLAYER 1 IS WINNER\n");
+	printf("_____________________________________________________________________	_____________________________________________________________\n");
+exit(0);
 }
 
+}
+
+
+
+int choice_selector(int y, int x)
+{
+
+int i,j;
+for(j=0;j<3;j++)
+  { 
+
+	switch(j)
+	{
+		case 0:
+
+			if((x ==1 && y==1) || (x ==10 && y==1) || (x ==1 && y==10) || (x ==10 && y==10))
+				return 1;
+
+		case 1:
+
+			for(i=2;i<=9;i++)
+			{
+				if((x == 1 && y == i) || (x == i && y == 1) || (x == 9 && y == i) || (x == i && y == 9))
+					return 2;
+			}
+
+
+		case 2:
+
+			for(i=2;i<9;i++)
+			{
+				for(j=2;j<9;j++)
+				{
+					if(x==i && y==j)
+						return 3;
+				}
+			}
+
+	}
+
+  }
+}
+
+
+void print()
+{
+int i,j;
+
+	for(i=0;i<=9;i++)
+	   {
+		for(j=0;j<=9;j++)
+		   {
+		   	printf("   %d   ",arr[i][j]);
+		   }
+		   printf("\n\n\n");
+	   }
 }
