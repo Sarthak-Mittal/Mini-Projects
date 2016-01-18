@@ -32,7 +32,7 @@ if(c>0)
 
 line1:
 printf("Player 1\n");
-printf("enter co-ordinate");
+printf("enter co-ordinate\n");
 scanf("%d %d",&y,&x);
 		
 d = choice_selector(y, x);
@@ -88,8 +88,8 @@ if(c>0)
 
 line2:
 printf("Player 2\n");
-printf("enter co-ordinate");
-scanf("%d%d",&y,&x);
+printf("enter co-ordinate\n");
+scanf("%d %d",&y,&x);
 		
 d = choice_selector(y, x);
 	
