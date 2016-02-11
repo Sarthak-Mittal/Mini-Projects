@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+
 struct node2 *create_node();
 void generate_quantity();
+void terminal_print();
 
 struct node1
 {
@@ -163,4 +165,35 @@ struct node2 *end;
 end = (struct node2*)malloc(sizeof(struct node2));
 end->next = NULL;
 return end;
+}
+
+
+ *This function is responsible to print data of terminal
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void terminal_print()
+{
+
+time_t t;
+
+srand((unsigned) time(&t));
+
+//sleep(2);
+
+printf(" SYMBOL   \t|BID PRICE \t |BID QUANTITY \t|ASK PRICE \t |ASK QUANTITY \t |LTP \t|TTQ\n");
+
+print_nifty();
+print_itc();
+print_reliance();
+print_alfapro();
+print_maxxam();
+print_versa();
+
+
+printf("\n-------------------------------------------------------------------------------------------------------------\n");
+printf("-------------------------------------------------------------------------------------------------------------\n\n");
+
+sleep(5);
+
 }
