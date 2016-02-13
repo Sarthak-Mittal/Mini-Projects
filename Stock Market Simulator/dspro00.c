@@ -8,6 +8,8 @@ void terminal_print();
 int req_number();
 int check_prices(int sell);
 int sum_quantity(struct node2 *start);
+void print_nifty();
+void print_itc();
 
 struct node1
 {
@@ -255,3 +257,70 @@ sum = sum + start->quantity;
 return sum;
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ *PRINT NIFTY VALUES
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void print_nifty()
+{
+
+int bid ,sell ,bid_q ,sell_q ,last_t_price ,last_t_quantity ,sell_part ,bid_part;
+
+last_t_price = 0;
+last_t_quantity = 0;
+sell_part = req_number();
+bid_part = check_prices(sell_part);
+
+sell = ask1[sell_part].price;
+bid = bid1[bid_part].price;
+
+bid_q  = sum_quantity(bid1[bid_part].next);
+sell_q  = sum_quantity(ask1[sell_part].next);
+
+if(sell == bid)
+{
+	last_t_price = bid;
+	if(bid_q >= sell_q)
+	{last_t_quantity = bid_q - sell_q;}
+	else
+	{last_t_quantity = sell_q - bid_q;}
+}
+printf(" NIFTY     \t| %d  \t \t | %d  \t| %d  \t \t | %d  \t | %d \t| %d   \n",bid,bid_q,sell,sell_q,last_t_price,last_t_quantity );
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ *PRINT ITC VALUES
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void print_itc()
+{
+
+int bid ,sell ,bid_q ,sell_q ,last_t_price ,last_t_quantity ,sell_part ,bid_part;
+
+last_t_price = 0;
+last_t_quantity = 0;
+sell_part = req_number();
+bid_part = check_prices(sell_part);
+
+sell = ask2[sell_part].price;
+bid = bid2[bid_part].price;
+
+bid_q  = sum_quantity(bid1[bid_part].next);
+sell_q  = sum_quantity(ask1[sell_part].next);
+
+if(sell == bid)
+{
+	last_t_price = bid;
+	if(bid_q >= sell_q)
+	{last_t_quantity = bid_q - sell_q;}
+	else
+	{last_t_quantity = sell_q - bid_q;}
+}
+printf(" ITC     \t| %d  \t \t | %d  \t| %d  \t \t | %d  \t | %d \t| %d   \n",bid,bid_q,sell,sell_q,last_t_price,last_t_quantity );
+
+}
