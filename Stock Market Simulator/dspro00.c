@@ -14,6 +14,7 @@ void print_reliance();
 void print_alfapro();
 void print_maxxam();
 void print_versa();
+void setting_bid_choice();
 
 struct node1
 {
@@ -498,5 +499,26 @@ if(sell == bid)
 	{last_t_quantity = sell_q - bid_q;}
 }
 printf(" VERSA     \t| %d  \t \t | %d  \t| %d  \t \t | %d  \t | %d \t| %d   \n",bid,bid_q,sell,sell_q,last_t_price,last_t_quantity );
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ *This function sets choices of biding company and bidding price
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void setting_bid_choice()
+{
+int ch_company,ch_price,quantity_share;
+
+printf("Enter company's name :");
+scanf("%d\n",&ch_company);
+printf("Enter bid price :");
+scanf("%d\n",&ch_price);
+printf("Enter share quantity :");
+scanf("%d\n",&quantity_share);
+
+setting_varibles_by_choices_made_bidding(ch_company-1,ch_price-1,quantity_share);
 
 }
