@@ -13,6 +13,7 @@ void print_itc();
 void print_reliance();
 void print_alfapro();
 void print_maxxam();
+void print_versa();
 
 struct node1
 {
@@ -466,3 +467,36 @@ printf(" MAXXAM     \t| %d  \t \t | %d  \t| %d  \t \t | %d  \t | %d \t| %d   \n"
 
 }
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ *PRINT VERSA VALUES
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void print_versa()
+{
+
+int bid ,sell ,bid_q ,sell_q ,last_t_price ,last_t_quantity ,sell_part ,bid_part;
+
+last_t_price = 0;
+last_t_quantity = 0;
+sell_part = req_number();
+bid_part = check_prices(sell_part);
+
+sell = ask6[sell_part].price;
+bid = bid6[bid_part].price;
+
+bid_q  = sum_quantity(bid1[bid_part].next);
+sell_q  = sum_quantity(ask1[sell_part].next);
+
+if(sell == bid)
+{
+	last_t_price = bid;
+	if(bid_q >= sell_q)
+	{last_t_quantity = bid_q - sell_q;}
+	else
+	{last_t_quantity = sell_q - bid_q;}
+}
+printf(" VERSA     \t| %d  \t \t | %d  \t| %d  \t \t | %d  \t | %d \t| %d   \n",bid,bid_q,sell,sell_q,last_t_price,last_t_quantity );
+
+}
