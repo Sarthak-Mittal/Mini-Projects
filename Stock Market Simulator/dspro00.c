@@ -16,6 +16,7 @@ void print_maxxam();
 void print_versa();
 void setting_bid_choice();
 void setting_varibles_by_choices_made_bidding(int index_company, int index_price, int quantity_share);
+void setting_ask_choice();
 
 struct node1
 {
@@ -575,4 +576,25 @@ add_node_to_correct_place(newnode, super_pointer	);
 
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ *This function sets choices for selling company and selling price
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void setting_ask_choice()
+{
+int ch_company,ch_price,quantity_share;
+
+printf("Enter company's name :");
+scanf("%d\n",&ch_company);
+printf("Enter ask price :");
+scanf("%d\n",&ch_price);
+printf("Enter share quantity :");
+scanf("%d\n",&quantity_share);
+
+setting_varibles_by_choices_made_selling(ch_company-1,ch_price-1,quantity_share);
+
+}
 
