@@ -17,6 +17,7 @@ void print_versa();
 void setting_bid_choice();
 void setting_varibles_by_choices_made_bidding(int index_company, int index_price, int quantity_share);
 void setting_ask_choice();
+void setting_varibles_by_choices_made_selling(int index_company, int index_price, int quantity_share);
 
 struct node1
 {
@@ -597,4 +598,56 @@ scanf("%d\n",&quantity_share);
 setting_varibles_by_choices_made_selling(ch_company-1,ch_price-1,quantity_share);
 
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ *This function sets variables according to choices made for selling
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void setting_varibles_by_choices_made_selling(int index_company, int index_price, int quantity_share)
+{
+
+struct node1 *super_pointer;
+struct node2 *first_element;
+struct node2 *newnode;
+
+switch(index_company)
+{
+
+case 1:
+	super_pointer = &ask1[index_price];
+	first_element = super_pointer->next;
+	break;
+case 2:
+	super_pointer = &ask2[index_price];
+	first_element = super_pointer->next;
+	break;
+case 3:
+	super_pointer = &ask3[index_price];
+	first_element = super_pointer->next;
+	break;
+case 4:
+	super_pointer = &ask4[index_price];
+	first_element = super_pointer->next;
+	break;
+case 5:
+	super_pointer = &ask5[index_price];
+	first_element = super_pointer->next;
+	break;
+case 6:
+	super_pointer = &ask6[index_price];
+	first_element = super_pointer->next;
+	break;
+
+}
+
+newnode = create_node();
+newnode->quantity = quantity_share;
+newnode->next = NULL;
+
+add_node_to_correct_place(newnode, super_pointer);
+
+}
+
 
