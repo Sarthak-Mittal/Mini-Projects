@@ -18,6 +18,7 @@ void setting_bid_choice();
 void setting_varibles_by_choices_made_bidding(int index_company, int index_price, int quantity_share);
 void setting_ask_choice();
 void setting_varibles_by_choices_made_selling(int index_company, int index_price, int quantity_share);
+void add_node_to_correct_place(struct node2 *newnode,struct node1 *super_pointer);
 
 struct node1
 {
@@ -649,5 +650,29 @@ newnode->next = NULL;
 add_node_to_correct_place(newnode, super_pointer);
 
 }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+ *This function place the given node at the correct place in linklist of quantity of shares.
+ */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void add_node_to_correct_place(struct node2 *newnode,struct node1 *super_pointer)
+{
+struct node2 *temp;
+temp=(struct node2 *)malloc(sizeof(struct node2));
+//  newnode is name of newly added node
+//  first_element is pointer to first node of required list
+temp=super_pointer->next;
+while((temp->next)->next != NULL)
+	{
+	temp = temp->next;
+	}
+
+newnode->next = temp->next;
+temp->next = newnode;
+
+}
+
 
 
